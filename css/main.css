@@ -1,0 +1,277 @@
+/********
+ * #Base *
+ ********/
+
+	/**************************
+	 * Reset (Eric Meyer 2.0) *
+	 **************************/
+		html, body, div, span, applet, object, iframe,
+		h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+		a, abbr, acronym, address, big, cite, code,
+		del, dfn, em, img, ins, kbd, q, s, samp,
+		small, strike, strong, sub, sup, tt, var,
+		b, u, i, center,
+		dl, dt, dd, ol, ul, li,
+		fieldset, form, label, legend,
+		table, caption, tbody, tfoot, thead, tr, th, td,
+		article, aside, canvas, details, embed, 
+		figure, figcaption, footer, header, hgroup, 
+		menu, nav, output, ruby, section, summary,
+		time, mark, audio, video {
+			margin: 0;
+			padding: 0;
+			border: 0;
+			font-size: 100%;
+			font: inherit;
+			vertical-align: baseline;
+		}
+		
+		/* HTML5 display-role reset for older browsers */
+		article, aside, details, figcaption, figure, 
+		footer, header, hgroup, menu, nav, section {
+			display: block;
+		}
+		body {
+			line-height: 1;
+		}
+		ol, ul {
+			list-style: none;
+		}
+		blockquote, q {
+			quotes: none;
+		}
+		blockquote:before, blockquote:after,
+		q:before, q:after {
+			content: '';
+			content: none;
+		}
+		table {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+		
+		
+		 /***********************
+		 * Innovators Only Base *
+		 ************************/
+		 html {
+		 	font-family: 'Dosis', 'Helvetica', sans-serif;
+		 }
+		  		
+/***********************
+ * #Layout	           *
+ ***********************/
+ 		
+	
+	/********************************
+	 * #Layout smartphones          *
+	 ********************************/
+	 	.l-center {
+ 			text-align: center;
+ 			margin: 0 auto;
+ 		}
+ 		
+ 		header {
+ 			width: 100%;
+ 			background-color: #E8E9E8;
+ 			padding-top: 1em;
+ 			padding-bottom: 1em;
+ 		}
+ 		
+ 		.logo {
+ 			width: 50%;
+ 		}
+ 		
+ 		.text-block {
+ 			text-align: left;
+ 			padding: 1em;
+ 			line-height: 1.4em;
+ 			font-size: 1.15em;
+ 		}
+ 		
+ 		.l-main {
+ 			padding: 1em;
+ 			font-size: 1.15em;
+ 			line-height: 1.4em;
+ 		}
+ 		
+ 		video {
+	 		height: auto;	
+	 		max-width: 100%;
+	 		width: 640px;
+	 	}
+
+	 	video object, video img {
+			max-width: 100%;
+			height: auto;
+			width: 640px;
+	 	}
+	 	
+	 	.l-nav {
+	 		width: 100%;
+	 	}
+	 	
+	/*******************************
+	 * #Layout desktop             *
+	 *******************************/		
+		@media screen and (min-width: 800px) {
+			.l-nav {
+				float: left;
+				width: 28%;
+				padding-left: 5%;
+				padding-right: 2%;
+				box-sizing: border-box;
+			}
+			
+			.l-main {
+				float: right;
+				width: 68%;
+				padding-left: 5%;
+				padding-right: 5%;
+				box-sizing: border-box;
+			}
+		}
+	 	
+
+/***********************
+ * #Dropdown Module    *
+ ***********************/
+ 		
+	
+	/**********************************
+	 * #Dropdown module - smartphones *
+	 **********************************/
+		.dropdown-button, .dropdown-link {
+	 		background-color: #F9BE0B;
+	 		padding: .5em;
+	 		display: inline-block;
+	 		cursor: pointer;
+	 	}
+	 	
+	 	.dropdown-button img {
+	 		float: right;
+	 		vertical-align: middle;
+	 		height: 1.25em;
+	 		margin-left: 1em;
+	 	}
+	 	
+	 	.dropdown-button-text {
+	 		float:left;
+	 		line-height:1.25em;
+	 	}
+	 	
+	 	.dropdown-menu {
+	 		display: none;
+			width: 75%;
+			float: right;
+			position: fixed;
+			right: 20px;
+			top: 0;
+			z-index: 101;
+	 	}
+	 	
+	 	.dropdown-link {
+	 		text-decoration: none;
+	 		color: black;
+	 		width: 100%;
+	 		border-left: 1px solid white;
+	 		border-bottom: 1px solid white;
+	 		font-size: 1.25em;
+	 		padding-top: 1em;
+	 		padding-bottom: 1em;
+	 	}
+	 	
+	 	#lightbox {
+	 		display: none;
+	 		background-color: gray;
+	 		float: left;
+	 		height: 100%;
+	 		width: 100%;
+	 		z-index: 100;
+	 		position: fixed;
+	 		opacity:0.75;
+	 		filter:alpha(opacity=75); /* For IE8 and earlier */
+	 	}
+	 	
+ 	/*******************************
+	 * #Dropdown Module desktop             *
+	 *******************************/		
+	@media screen and (min-width: 800px) {
+		.dropdown-menu {
+			display: none;
+			float: none;
+			position: relative;
+			right: 0;
+			width: 50%;
+		}
+		
+		#lightbox {
+			height: 0;
+			width: 0;
+		}
+		
+		.dropdown-link {
+	 		width: 100%;
+	 		font-size: 1em;
+	 		border-top: 1px solid white;
+	 	}		
+	}
+
+/***********************
+ * #Nav Module    *
+ ***********************/
+ 		
+	
+	/**********************************
+	 * #Nav module - smartphones *
+	 **********************************/
+	 	.nav-header {
+	 		background-color: #2E2B3B;
+	 		font-size: 1.8em;
+	 		color: white;
+	 		padding: .6em;
+	 		margin-top: .5em;
+	 		font-weight: lighter;
+	 	}
+	 	
+	 	.nav-link {
+	 		background-color: #F9BE0B;
+	 		font-size: 1.25em;
+	 		line-height: 1.25;
+	 		display: block;
+	 		padding: .75em;
+	 		border-top: 1px solid white;
+	 		color: black;
+	 	}
+	 	
+	 	.nav-link img {
+	 		height: 1.25em;
+	 		margin-bottom: 0;
+	 		float: right;
+	 	}
+	 	
+	 	.nav-link div {
+	 		width: 80%;
+	 		float: left;
+	 	}
+
+/************************************************
+ * #Clearfix module: 							
+ *												
+ * Apply the .clearfix class to any parent		
+ * element that is collapsing because it 		
+ * contains only floated elements 				
+ ************************************************/
+
+		.clearfix:before, .clearfix:after {
+			content: "";
+			display: table;
+		}
+		
+		.clearfix:after {
+			clear: both;
+		}
+		
+		.clearfix {
+			*zoom: 1;
+		}
