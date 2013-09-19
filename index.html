@@ -10,9 +10,13 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link rel="shortcut icon" href="imgs/favicon.ico" />
     <link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
-    <!--[if IE]>
-        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+	<![endif]-->
+	
+	<!--[if lte IE 7]>
+		<meta http-equiv="refresh" content="0; url=ieredirect.html"> 
+	<![endif]-->
     
     
     <script type="text/javascript">
@@ -24,8 +28,6 @@
 
 			var isMenuActive = false; /* when true, clicking anywhere in the document but the menu will hide the menu */			
 			$(".dropdown-button").click(function(event) {
-				
-				
 				if ($(".dropdown-menu").css("float") == "none" ){ 
 /* 				   evaluates to true at screen size wider than 800px */
 /* 				   true/desktop - scroll screen to show expanded menu */
@@ -41,16 +43,16 @@
 					$("#lightbox").toggle();
 				}
 
-				
-				
 				event.stopPropagation(); /* prevent click event from bubbling up dom tree and activating document click handler to hide menu */
 				
 				isMenuActive = !isMenuActive;				
 			});
 			
+			
 			$(".dropdown-menu").click(function(event){
 				event.stopPropagation();
 			});		
+			
 			
 			/* clicking outside the menu in the document will hide the menu  */
 			$("#lightbox").click(function(event) {
@@ -84,57 +86,59 @@
 			</div>
 		</header>
 		
-		<div class="l-main">
-			<video controls>
-					<!-- MP4 must be first for iPad! -->
-					<source src="videos/webinar-2-640-by-480.mp4" type="video/mp4" /><!-- Safari / iOS video    -->
-					<source src="videos/webinar-2-960-540.ogv" type="video/ogg" /><!-- Firefox / Opera / Chrome10 -->
-					<!-- fallback to Flash: -->
-					<object type="application/x-shockwave-flash" data="players/jwplayer.flash.swf">
-						<!-- Firefox uses the `data` attribute above, IE/Safari uses the param below -->
-						<param name="movie" value="players/jwplayer.flash.swf" />
-						<param name="flashvars" value="controlbar=over&amp;image=imgs/video-title-screen.jpg&amp;file=videos/webinar-2-640-by-480.mp4" />
-						<!-- fallback image. note the title field below, put the title of the video there -->
-						<img src="imgs/video-title-screen.png" alt="Video of our mission."
-							 title="No video playback capabilities, please download the video below" />
-					</object>
-			</video>
+		
+		<div id="wrapper">
+			<div class="l-main">
+				<video controls>
+						<!-- MP4 must be first for iPad! -->
+						<source src="videos/webinar-2-640-by-480.mp4" type="video/mp4" /><!-- Safari / iOS video    -->
+						<source src="videos/webinar-2-960-540.ogv" type="video/ogg" /><!-- Firefox / Opera / Chrome10 -->
+						<!-- fallback to Flash: -->
+						<object type="application/x-shockwave-flash" data="players/jwplayer.flash.swf">
+							<!-- Firefox uses the `data` attribute above, IE/Safari uses the param below -->
+							<param name="movie" value="players/jwplayer.flash.swf" />
+							<param name="flashvars" value="controlbar=over&amp;image=imgs/video-title-screen.jpg&amp;file=videos/webinar-2-640-by-480.mp4" />
+							<!-- fallback image. note the title field below, put the title of the video there -->
+							<img src="imgs/video-title-screen.png" alt="Video of our mission."
+								 title="No video playback capabilities, please download the video below" />
+						</object>
+				</video>
+				
+				<!-- you *must* offer a download link as they may be able to play the file locally. customise this bit all you want -->
+				<div>Can't view the video above?</div>
+				<nav class="dropdown-button">
+					<div class="dropdown-button-text">Alternate links</div>
+					<img src="imgs/dropdown-arrow2.png" alt="Alternate links">
+				</nav>
+				
+				<nav class="dropdown-menu">
+					<a class="dropdown-link" href="videos/webinar-2-640-by-480.mp4">Safari and IE (.mp4)</a>  
+					<a class="dropdown-link" href="videos/webinar-2-960-540.ogv">Firefox, Chrome, and Opera (.ogg)</a>
+					<a class="dropdown-link" href="http://www.youtube.com/watch?v=1EUHJE4JMoU&amp;feature=youtu.be">YouTube (low-def)</a>
+					<a id="bottom-dropdown-link" class="dropdown-link" href="http://www.youtube.com/watch?v=aktTfCNRH4c&amp;hd=1">YouTube (high-def)</a>
+				</nav>
+			</div>
 			
-			<!-- you *must* offer a download link as they may be able to play the file locally. customise this bit all you want -->
-			<div>Can't view the video above?</div>
-			<nav class="dropdown-button">
-				<div class="dropdown-button-text">Alternate links</div>
-				<img src="imgs/dropdown-arrow.png" alt="Alternate links">
-			</nav>
 			
-			<nav class="dropdown-menu">
-				<a class="dropdown-link" href="videos/webinar-2-640-by-480.mp4">Safari and IE (.mp4)</a>  
-				<a class="dropdown-link" href="videos/webinar-2-960-540.ogv">Firefox, Chrome, and Opera (.ogg)</a>
-				<a class="dropdown-link" href="http://www.youtube.com/watch?v=1EUHJE4JMoU&feature=youtu.be">YouTube (low-def)</a>
-				<a id="bottom-dropdown-link" class="dropdown-link" href="http://www.youtube.com/watch?v=aktTfCNRH4c&hd=1">YouTube (high-def)</a>
+			
+			<nav class="l-nav">
+				<div class="nav-header">Get More Information</div>
+				<a class="nav-link clearfix" href="downloads/innovators-only-world.pdf">
+					<div>Download the introduction slides</div>
+					<img src="imgs/nav-link-arrow.png" alt="Introduction slides"> 
+				</a>
+				
+				<div class="nav-header">Get Started</div>
+				<a class="nav-link clearfix" href="downloads/innovators-only-2014-and-2015-program-announcement-v3.pdf">
+					<div>Read the 2014/2015 program announcement</div>
+					<img src="imgs/nav-link-arrow.png" alt="Program announcement"> 
+				</a>
+				<a class="nav-link clearfix" href="downloads/rfp-instructions-v1-4.docx">
+					<div>Download the request for proposals</div>
+					<img src="imgs/nav-link-arrow.png" alt="Request for proposals"> 
+				</a>
 			</nav>
 		</div>
-		
-		
-		
-		<nav class="l-nav">
-			<div class="nav-header">Get More Information</div>
-			<a class="nav-link clearfix" href="http://innovatorsonly.org/downloads/innovators-only-world.pdf">
-				<div>Download the introduction slides</div>
-				<img src="imgs/nav-link-arrow.png" alt="Introduction slides"> 
-			</a>
-			
-			<div class="nav-header">Get Started</div>
-			<a class="nav-link clearfix" href="http://innovatorsonly.org/downloads/innovators-only-2014-and-2015-program-announcement-v3.pdf">
-				<div>Read the 2014/2015 program announcement</div>
-				<img src="imgs/nav-link-arrow.png" alt="Program announcement"> 
-			</a>
-			<a class="nav-link clearfix" href="http://innovatorsonly.org/downloads/rfp-instructions-v1-4.docx">
-				<div>Download the request for proposals</div>
-				<img src="imgs/nav-link-arrow.png" alt="Request for proposals"> 
-			</a>
-		</nav>
-		
 </body>
 </html>
 

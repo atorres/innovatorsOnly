@@ -57,6 +57,10 @@
 		 html {
 		 	font-family: 'Dosis', 'Helvetica', sans-serif;
 		 }
+		 
+		 a {
+		 	text-decoration: none;
+		 }
 		  		
 /***********************
  * #Layout	           *
@@ -114,22 +118,46 @@
 	/*******************************
 	 * #Layout desktop             *
 	 *******************************/		
-		@media screen and (min-width: 800px) {
+		@media screen and (min-width: 730px) {
 			.l-nav {
 				float: left;
 				width: 28%;
 				padding-left: 5%;
 				padding-right: 2%;
 				box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
 			}
 			
 			.l-main {
 				float: right;
-				width: 68%;
+				width: 65%;
 				padding-left: 5%;
 				padding-right: 5%;
 				box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
 			}
+			
+			.logo {
+				width: 20%;
+			}
+			
+			.text-block {
+				width: 70%;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
+			header {
+				padding-top: 2em;
+				padding-bottom: 2em;
+			}
+			
+			#wrapper {
+				padding-top: 2em;
+			}
+			
 		}
 	 	
 
@@ -196,7 +224,7 @@
  	/*******************************
 	 * #Dropdown Module desktop             *
 	 *******************************/		
-	@media screen and (min-width: 800px) {
+	@media screen and (min-width: 730px) {
 		.dropdown-menu {
 			display: none;
 			float: none;
@@ -215,6 +243,10 @@
 	 		font-size: 1em;
 	 		border-top: 1px solid white;
 	 	}		
+	 	
+	 	.dropdown-button:hover, .dropdown-link:hover, .nav-link:hover {
+	 		background-color: #FFDE00;
+	 	}
 	}
 
 /***********************
@@ -223,7 +255,7 @@
  		
 	
 	/**********************************
-	 * #Nav module - smartphones *
+	 * #Nav module - smartphones      *
 	 **********************************/
 	 	.nav-header {
 	 		background-color: #2E2B3B;
@@ -251,10 +283,17 @@
 	 	}
 	 	
 	 	.nav-link div {
-	 		width: 80%;
+	 		width: 75%;
 	 		float: left;
 	 	}
 
+	/**********************************
+	 * #Nav module - desktop          *
+	 **********************************/
+	 	.nav-header {
+	 		padding: 1em .6em;
+	 	}
+	 
 /************************************************
  * #Clearfix module: 							
  *												
