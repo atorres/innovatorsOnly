@@ -14,6 +14,14 @@
 		<script src="js/html5shiv.js"></script>
 	<![endif]-->
 	
+	<!--[if gte IE 9]>
+	  <style type="text/css">
+	    .gradient {
+	       filter: none;
+	    }
+	  </style>
+	<![endif]-->
+	
 	<!--[if lte IE 7]>
 		<meta http-equiv="refresh" content="0; url=ieredirect.html"> 
 	<![endif]-->
@@ -28,38 +36,49 @@
 
 			var isMenuActive = false; /* when true, clicking anywhere in the document but the menu will hide the menu */			
 			$(".dropdown-button").click(function(event) {
-				if ($(".dropdown-menu").css("float") == "none" ){ 
+				
+				// get the id of the clicked dropdown and use it to target corresponding menu object
+				var clickedID = $(this).attr('id'); 
+				var targetMenu = clickedID.substring(16);
+				var targetMenu = "dropdown-menu-" + targetMenu;
+				var targetMenu = document.getElementById(targetMenu);
+				$(targetMenu).toggleClass("activeMenu");
+				
+				
+				if ($(targetMenu).css("float") == "none" ){ 
 /* 				   evaluates to true at screen size wider than 800px */
 /* 				   true/desktop - scroll screen to show expanded menu */
 /* 				   false/smartphone - use lightbox effect  */
 
-					$(".dropdown-menu").slideToggle("fast");
-					$('html, body').animate({ 
-				        scrollTop: $("#bottom-dropdown-link").offset().top
-				    }, 500);
+					$(targetMenu).slideToggle("fast");					
+					
+					/* scroll down if opening menu */
+					if (isMenuActive == false) {
+						$('html,body').animate({ 
+							scrollTop: $(window).scrollTop() + 150
+						});
+					}
+					 
+
 				}
-				else {
-					$(".dropdown-menu").slideToggle("fast");
+				else {	
+					$(targetMenu).slideToggle("fast");
 					$("#lightbox").toggle();
 				}
-
-				event.stopPropagation(); /* prevent click event from bubbling up dom tree and activating document click handler to hide menu */
-				
+								
 				isMenuActive = !isMenuActive;				
 			});
 			
-			
-			$(".dropdown-menu").click(function(event){
-				event.stopPropagation();
-			});		
+
+	
 			
 			
 			/* clicking outside the menu in the document will hide the menu  */
 			$("#lightbox").click(function(event) {
+				$(".activeMenu").slideToggle("fast");
+				$(".activeMenu").toggleClass("activeMenu");
+				$("#lightbox").toggle();
 				if(isMenuActive) {
-					$(".dropdown-menu").slideToggle("fast");
-				    $("#lightbox").toggle();
-					
 					isMenuActive = !isMenuActive;
 				} 
 			});
@@ -75,48 +94,87 @@
 	<div id="lightbox">
 	</div>
 	
-		<header class="l-center">
-			<a href="/"><img class="logo" src="imgs/logo.png" alt="Innovators Only"></a>
+		<header class="gradient clearfix">
+			<div class="l-header-left">
+				<a href="/"><img class="logo" src="imgs/logo.png" alt="Innovators Only"></a>
+			</div>
 			
-			<div class="text-block">
-				Innovators Only is a two year research program that pairs high schools from around the world with professors from America's top universities. Students conceive their own projects, conduct hands-on research, and compete in teams while receiving guidance and mentorship from these professors.
-				<br>
-				<br>
-				Our mission is to spread the spirit of innovation and research across the globe to help find the next great idea — wherever it may be.
+			<div class="l-header-right text-block">
+				Innovators Only is a program that pairs select high schools from around the world with professors from America's top universities. Over the course of two years, students conceive their own projects, conduct hands-on research, and compete in teams while receiving guidance and mentorship from these professors.
 			</div>
 		</header>
 		
 		
 		<div id="wrapper">
 			<div class="l-main">
-				<video controls>
-						<!-- MP4 must be first for iPad! -->
-						<source src="videos/webinar-2-640-by-480.mp4" type="video/mp4" /><!-- Safari / iOS video    -->
-						<source src="videos/webinar-2-960-540.ogv" type="video/ogg" /><!-- Firefox / Opera / Chrome10 -->
-						<!-- fallback to Flash: -->
-						<object type="application/x-shockwave-flash" data="players/player.swf">
-							<!-- Firefox uses the `data` attribute above, IE/Safari uses the param below -->
-							<param name="movie" value="players/player.swf" />
-							<param name="flashvars" value="controlbar=over&amp;image=imgs/video-title-screen.jpg&amp;file=/videos/webinar-2-640-by-480.mp4" />
-							<!-- fallback image. note the title field below, put the title of the video there -->
-							<img src="imgs/video-title-screen.png" alt="Video of our mission."
-								 title="No video playback capabilities, please download the video below" />
-						</object>
-				</video>
-				
-				<!-- you *must* offer a download link as they may be able to play the file locally. customise this bit all you want -->
-				<div>Can't view the video above?</div>
-				<nav class="dropdown-button">
-					<div class="dropdown-button-text">Alternate links</div>
-					<img src="imgs/dropdown-arrow2.png" alt="Alternate links">
-				</nav>
-				
-				<nav class="dropdown-menu">
-					<a class="dropdown-link" href="videos/webinar-2-640-by-480.mp4">Safari and IE (.mp4)</a>  
-					<a class="dropdown-link" href="videos/webinar-2-960-540.ogv">Firefox, Chrome, and Opera (.ogg)</a>
-					<a class="dropdown-link" href="http://www.youtube.com/watch?v=1EUHJE4JMoU&amp;feature=youtu.be">YouTube (low-def)</a>
-					<a id="bottom-dropdown-link" class="dropdown-link" href="http://www.youtube.com/watch?v=aktTfCNRH4c&amp;hd=1">YouTube (high-def)</a>
-				</nav>
+			
+				<!-- INTRODUCTION VIDEO -->
+				<div class="l-video-wrapper">
+					<div class="video-title">What is Innovators Only?</div>
+					<video controls poster="../imgs/introduction-video-poster.png">
+							<!-- MP4 must be first for iPad! -->
+							<source src="videos/introduction.mp4" type="video/mp4" /><!-- Safari / iOS video    -->
+							<source src="videos/introduction.ogv" type="video/ogg" /><!-- Firefox / Opera / Chrome10 -->
+							<!-- fallback to Flash: -->
+							<object type="application/x-shockwave-flash" data="players/player.swf">
+								<!-- Firefox uses the `data` attribute above, IE/Safari uses the param below -->
+								<param name="movie" value="players/player.swf" />
+								<param name="flashvars" value="controlbar=over&amp;image=imgs/introduction-video-poster.jpg&amp;file=/videos/introduction.mp4" />
+								<!-- fallback image. note the title field below, put the title of the video there -->
+								<img src="imgs/introduction-video-poster.png" alt="Video of our mission."
+									 title="No video playback capabilities, please download the video below" />
+							</object>
+					</video>
+					
+					<div>Can't view the video above?</div>
+					<nav class="dropdown-button" id="dropdown-button-introduction">
+						<div class="dropdown-button-text">Alternate links</div>
+						<img src="imgs/dropdown-arrow2.png" alt="Alternate links">
+					</nav>
+					
+					<nav class="dropdown-menu" id="dropdown-menu-introduction">
+						<a class="dropdown-link" href="videos/introduction.mp4">Safari and IE (.mp4)</a>  
+						<a id="bottom-dropdown-link-introduction" class="dropdown-link" href="videos/introduction.ogv">Firefox, Chrome, and Opera (.ogg)</a>					
+					</nav>
+				</div>
+			
+			
+			
+			
+			
+			
+				<!-- WEBINAR VIDEO -->
+				<div class="l-video-wrapper">
+					<div class="video-title">How does it work?</div>
+					<video controls>
+							<!-- MP4 must be first for iPad! -->
+							<source src="videos/webinar-2-640-by-480.mp4" type="video/mp4" /><!-- Safari / iOS video    -->
+							<source src="videos/webinar-2-960-540.ogv" type="video/ogg" /><!-- Firefox / Opera / Chrome10 -->
+							<!-- fallback to Flash: -->
+							<object type="application/x-shockwave-flash" data="players/player.swf">
+								<!-- Firefox uses the `data` attribute above, IE/Safari uses the param below -->
+								<param name="movie" value="players/player.swf" />
+								<param name="flashvars" value="controlbar=over&amp;image=imgs/webinar-video-poster.jpg&amp;file=/videos/webinar-2-640-by-480.mp4" />
+								<!-- fallback image. note the title field below, put the title of the video there -->
+								<img src="imgs/webinar-video-poster.png" alt="Video of our mission."
+									 title="No video playback capabilities, please download the video below" />
+							</object>
+					</video>
+					
+					<!-- you *must* offer a download link as they may be able to play the file locally. customise this bit all you want -->
+					<div>Can't view the video above?</div>
+					<nav class="dropdown-button" id="dropdown-button-webinar">
+						<div class="dropdown-button-text">Alternate links</div>
+						<img src="imgs/dropdown-arrow2.png" alt="Alternate links">
+					</nav>
+					
+					<nav class="dropdown-menu" id="dropdown-menu-webinar">
+						<a class="dropdown-link" href="videos/webinar-2-640-by-480.mp4">Safari and IE (.mp4)</a>  
+						<a class="dropdown-link" href="videos/webinar-2-960-540.ogv">Firefox, Chrome, and Opera (.ogg)</a>
+						<a class="dropdown-link" href="http://www.youtube.com/watch?v=1EUHJE4JMoU&amp;feature=youtu.be">YouTube (low-def)</a>
+						<a id="bottom-dropdown-link" class="dropdown-link" href="http://www.youtube.com/watch?v=aktTfCNRH4c&amp;hd=1">YouTube (high-def)</a>
+					</nav>
+				</div>
 			</div>
 			
 			
@@ -124,21 +182,21 @@
 			<nav class="l-nav">
 				<div class="nav-header">Get More Information</div>
 				<a class="nav-link clearfix" href="downloads/innovators-only-world.pdf">
-					<div>Download the introduction slides</div>
+					<div>View the introduction slides</div>
 					<img src="imgs/nav-link-arrow.png" alt="Introduction slides"> 
 				</a>
 				
 				<div class="nav-header">Get Started</div>
-				<a class="nav-link clearfix" href="downloads/innovators-only-2014-and-2015-program-announcement-v3.pdf">
-					<div>Read the 2014/2015 program announcement</div>
+				<a class="nav-link clearfix" href="downloads/innovators-only-program-announcement-v3.pdf">
+					<div>Read the program announcement</div>
 					<img src="imgs/nav-link-arrow.png" alt="Program announcement"> 
 				</a>
-				<a class="nav-link clearfix" href="downloads/rfp-instructions-v1-4.docx">
-					<div>Download the request for proposals</div>
+				<a class="nav-link clearfix" href="downloads/rfa-instructions-v1-5.pdf">
+					<div>Read the request for applications</div>
 					<img src="imgs/nav-link-arrow.png" alt="Request for proposals"> 
 				</a>
-				<a class="nav-link clearfix" href="downloads/site-visit-guidelines.docx">
-					<div>Download the site visit guidelines</div>
+				<a class="nav-link clearfix" href="downloads/site-visit-guidelines.pdf">
+					<div>Read the site visit guidelines</div>
 					<img src="imgs/nav-link-arrow.png" alt="Site visit guideline"> 
 				</a>
 			</nav>
